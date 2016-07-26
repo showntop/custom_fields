@@ -2,8 +2,7 @@ require 'carrierwave/mongoid'
 
 module CarrierWave
 
-  module Mongoid
-
+  module MountUploaderWithLocalization
     def mount_uploader_with_localization(column, uploader=nil, options={}, &block)
       mount_uploader_without_localization(column, uploader, options, &block)
 
@@ -18,8 +17,10 @@ module CarrierWave
         end
       end
     end
+  end
 
-    alias_method_chain :mount_uploader, :localization
+  module Mongoid
+    prepend MountUploaderWithLocalization
   end
 
 end
