@@ -1,6 +1,5 @@
-class String
-
-  def constantize_with_custom_fields
+module CnstantizeWithCustomFields
+    def constantize_with_custom_fields
     begin
       constantize_without_custom_fields
     rescue NameError => exception
@@ -23,6 +22,8 @@ class String
       raise exception
     end
   end
+end
 
-  alias_method_chain :constantize, :custom_fields
+class String
+  prepend CnstantizeWithCustomFields
 end

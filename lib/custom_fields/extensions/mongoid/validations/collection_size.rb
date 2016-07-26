@@ -1,6 +1,12 @@
 module Mongoid
   module Validations
+    module CollectionValidating
+      def validate_each_with_collection(record, attribute, value)
+        value = collection_to_size(record, attribute)
 
+        self.validate_each_without_collection(record, attribute, value)
+      end
+    end
     # Validates that the specified collections do or do not match a certain
     # size.
     #
@@ -13,15 +19,8 @@ module Mongoid
     #     validates_collection_size_of :addresses, in: 1..10
     #   end
     class CollectionSizeValidator < Mongoid::Validatable::LengthValidator
-
-      def validate_each_with_collection(record, attribute, value)
-        value = collection_to_size(record, attribute)
-
-        self.validate_each_without_collection(record, attribute, value)
-      end
-
-      alias_method_chain :validate_each, :collection
-
+      prepend CollectionValidating
+      
       private
 
       def collection_to_size(record, attribute)
