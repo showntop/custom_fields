@@ -25,12 +25,12 @@ Gem::Specification.new 'custom_fields', CustomFields::VERSION do |spec|
     'README.md'
   ]
 
-  spec.required_ruby_version = '~> 2.1'
+  spec.required_ruby_version = '~> 2.2'
 
   spec.required_rubygems_version = '~> 2.4'
 
-  spec.add_dependency 'mongoid',             '~> 5.1.0'
-  spec.add_dependency 'carrierwave-mongoid', '~> 0.8.1'
-  spec.add_dependency 'activesupport',       '~> 4.2.5'
-  spec.add_dependency 'monetize',            '~> 1.4.0'
+  spec.add_dependency 'mongoid'
+  spec.add_dependency 'carrierwave-mongoid'
+  spec.add_dependency 'activesupport'
+  spec.add_dependency 'monetize'
 end
